@@ -1,0 +1,79 @@
+.perfume-card {
+      background-color: var(--lamsa-white);
+      border: 1px solid var(--lamsa-border);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition-smooth);
+      position: relative;
+
+      &:hover {
+        border-color: var(--lamsa-gold);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+
+        .add-to-cart-btn {
+          background-color: var(--lamsa-dark);
+          color: var(--lamsa-white);
+        }
+      }
+    }
+
+    .card-media-wrapper {
+      margin-bottom: 1.25rem;
+      width: 100%;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+
+      .product-title {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--lamsa-dark);
+        line-height: 1.3;
+      }
+
+      .product-price {
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--lamsa-dark);
+        white-space: nowrap;
+      }
+    }
+
+    .product-subtitle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lamsa-text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background-color: var(--lamsa-cream);
+      color: var(--lamsa-dark);
+      border: 1px solid var(--lamsa-border);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: var(--transition-smooth);
+      margin-top: auto;
+      text-align: center;
+    }

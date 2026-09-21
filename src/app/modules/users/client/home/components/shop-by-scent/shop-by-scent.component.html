@@ -1,0 +1,34 @@
+<section id="scent-families" class="scent-section" aria-labelledby="scent-heading">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <span class="eyebrow">OLFACTORY CLASSIFICATION</span>
+          <h2 id="scent-heading" class="section-title heading-serif">Shop By Scent Family</h2>
+          <p class="section-desc">
+            Immerse yourself in distinct olfactive realms, from radiant florals to deep oriental woods.
+          </p>
+        </div>
+
+        <!-- Scent Families Grid -->
+        <div class="scents-grid">
+          @for (family of scentFamilies(); track family.id) {
+            <article class="scent-card" tabindex="0">
+              <!-- Placeholder Image Box -->
+              <div class="image-placeholder-box scent-placeholder">
+                <svg class="placeholder-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="placeholder-label">{{ family.name }} Family</span>
+              </div>
+              
+              <div class="scent-card-body">
+                <h3 class="family-name heading-serif">{{ family.name }}</h3>
+                <span class="family-notes">{{ family.notes }}</span>
+                <p class="family-desc">{{ family.description }}</p>
+                <a href="#featured" class="family-btn">Discover {{ family.name }}</a>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </section>

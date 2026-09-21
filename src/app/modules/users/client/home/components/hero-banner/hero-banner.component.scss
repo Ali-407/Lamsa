@@ -1,0 +1,98 @@
+.hero-banner {
+      background: linear-gradient(180deg, var(--lamsa-cream) 0%, var(--lamsa-sand) 100%);
+      padding: 4rem 0 5rem;
+      border-bottom: 1px solid var(--lamsa-border);
+
+      @media (min-width: 992px) {
+        padding: 6rem 0 7rem;
+      }
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+      align-items: center;
+
+      @media (min-width: 992px) {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        color: var(--lamsa-dark);
+        line-height: 1;
+        margin-bottom: 1.25rem;
+
+        @media (min-width: 768px) {
+          font-size: 4.75rem;
+        }
+      }
+
+      .hero-slogan {
+        font-size: 1.125rem;
+        color: var(--lamsa-text-muted);
+        line-height: 1.7;
+        margin-bottom: 2.25rem;
+        max-width: 520px;
+      }
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      @media (min-width: 480px) {
+        flex-direction: row;
+      }
+    }
+
+    .hero-visual {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5EFE6 100%);
+      border: 1px solid var(--lamsa-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-hover);
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 12px;
+        border: 1px solid var(--lamsa-border-light);
+        pointer-events: none;
+      }
+    }
+
+    .placeholder-graphic {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+
+      .placeholder-tag {
+        font-size: 0.6875rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--lamsa-gold);
+        font-weight: 600;
+      }
+    }

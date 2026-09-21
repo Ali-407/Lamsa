@@ -1,0 +1,32 @@
+<section id="occasions" class="occasion-section" aria-labelledby="occasion-heading">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <span class="eyebrow">TAILORED MOMENTS</span>
+          <h2 id="occasion-heading" class="section-title heading-serif">Shop By Occasion</h2>
+          <p class="section-desc">
+            Find the perfect olfactory signature curated for life's most cherished milestones.
+          </p>
+        </div>
+
+        <!-- Occasions Grid -->
+        <div class="occasions-grid">
+          @for (item of occasions(); track item.id) {
+            <article class="occasion-card" tabindex="0">
+              <!-- Placeholder Image Box -->
+              <div class="image-placeholder-box occasion-placeholder">
+                <svg class="placeholder-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <path d="M12 21a9 9 0 100-18 9 9 0 000 18zM12 8v4l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="placeholder-label">{{ item.title }}</span>
+              </div>
+              <div class="card-overlay">
+                <span class="category-subtitle">{{ item.subtitle }}</span>
+                <h3 class="category-title heading-serif">{{ item.title }}</h3>
+                <span class="explore-link">Explore Collection &rarr;</span>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </section>

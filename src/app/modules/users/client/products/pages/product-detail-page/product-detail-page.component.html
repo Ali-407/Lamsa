@@ -1,0 +1,402 @@
+<div class="product-detail-page">
+  <div class="container page-container">
+    @if (product(); as prod) {
+    <!-- 1. Breadcrumbs Navigation -->
+    <app-breadcrumb [items]="breadcrumbs()"></app-breadcrumb>
+
+    <!-- 2. Main Product Section -->
+    <div class="product-main-grid">
+      <!-- Left Column: Luxury Image & Thumbnail Gallery -->
+      <div class="gallery-column">
+        <!-- Hero Stage Display -->
+        <div class="hero-image-stage" [attr.data-variant]="prod.placeholderVariant">
+          <div class="ambient-glow"></div>
+
+          <!-- Dynamic SVG Flacon Art & Gallery View Switching -->
+          <div class="stage-view-content">
+            @switch (activeImageIndex()) {
+            @case (0) {
+            <!-- Front Flacon Studio View -->
+            <div class="bottle-view-wrapper" [class]="'variant-' + prod.placeholderVariant">
+              @switch (prod.placeholderVariant) {
+              @case ('amber') {
+              <svg class="flacon-hero-svg" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="120" cy="295" rx="55" ry="9" fill="rgba(0,0,0,0.22)" filter="blur(6px)" />
+                <!-- Wooden Stopper -->
+                <rect x="104" y="38" width="32" height="34" rx="4" fill="#8B5A2B" stroke="#5C3A1E" stroke-width="2" />
+                <line x1="108" y1="48" x2="132" y2="48" stroke="#A76F3B" stroke-width="1.5" />
+                <!-- Neck -->
+                <rect x="110" y="72" width="20" height="16" fill="#B8860B" opacity="0.9" />
+                <!-- Glass Body -->
+                <rect x="75" y="88" width="90" height="200" rx="12" fill="url(#heroAmberGrad)" stroke="#7A3E00"
+                  stroke-width="2" />
+                <!-- Glass Sheen -->
+                <rect x="82" y="94" width="14" height="188" rx="6" fill="white" opacity="0.3" />
+                <rect x="144" y="94" width="10" height="188" rx="5" fill="white" opacity="0.15" />
+                <!-- Label Plaque -->
+                <rect x="90" y="145" width="60" height="75" rx="3" fill="#FDFBF7" opacity="0.92" stroke="#C5A059"
+                  stroke-width="1" />
+                <text x="120" y="178" text-anchor="middle" font-family="'Cinzel', serif" font-size="8"
+                  letter-spacing="2.5" fill="#141414">{{ prod.name.toUpperCase() }}</text>
+                <text x="120" y="195" text-anchor="middle" font-family="'Playfair Display', serif" font-size="6.5"
+                  font-style="italic" fill="#666">{{ prod.concentration || 'PARFUM' }}</text>
+                <defs>
+                  <linearGradient id="heroAmberGrad" x1="75" y1="88" x2="165" y2="288" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#F59E0B" />
+                    <stop offset="40%" stop-color="#D97706" />
+                    <stop offset="80%" stop-color="#92400E" />
+                    <stop offset="100%" stop-color="#451A03" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              }
+              @case ('crystal') {
+              <svg class="flacon-hero-svg" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="50,265 190,265 210,300 30,300" fill="#2C2C2C" stroke="#444" />
+                <ellipse cx="120" cy="265" rx="65" ry="8" fill="rgba(0,0,0,0.35)" filter="blur(5px)" />
+                <!-- Gold Crown Cap -->
+                <rect x="96" y="32" width="48" height="28" rx="3" fill="url(#heroGoldCapGrad)" stroke="#8A6B29"
+                  stroke-width="1.5" />
+                <polygon points="65,75 175,75 190,250 50,250" fill="url(#heroCrystalGrad)" stroke="#B45309"
+                  stroke-width="2" />
+                <polygon points="65,75 175,75 190,250 50,250" fill="url(#heroCrystalGrad)" stroke="#B45309"
+                  stroke-width="2" />
+                <line x1="65" y1="75" x2="190" y2="250" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" />
+                <line x1="175" y1="75" x2="50" y2="250" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" />
+                <rect x="85" y="140" width="70" height="42" rx="2" fill="#FFFFFF" opacity="0.92" stroke="#C5A059"
+                  stroke-width="1" />
+                <text x="120" y="162" text-anchor="middle" font-family="'Cinzel', serif" font-size="7.5"
+                  letter-spacing="2" fill="#141414">{{ prod.name.toUpperCase() }}</text>
+                <text x="120" y="174" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif"
+                  font-size="5" letter-spacing="1" fill="#666">PARFUM</text>
+                <defs>
+                  <linearGradient id="heroGoldCapGrad" x1="96" y1="32" x2="144" y2="60" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FDE68A" />
+                    <stop offset="50%" stop-color="#D97706" />
+                    <stop offset="100%" stop-color="#78350F" />
+                  </linearGradient>
+                  <linearGradient id="heroCrystalGrad" x1="65" y1="75" x2="190" y2="250"
+                    gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#F59E0B" />
+                    <stop offset="60%" stop-color="#B45309" />
+                    <stop offset="100%" stop-color="#78350F" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              }
+              @case ('noir') {
+              <svg class="flacon-hero-svg" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="60" y="260" width="120" height="42" rx="2" fill="#1E1E1E" stroke="#333" />
+                <path d="M102 52 L108 30 L120 44 L132 30 L138 52 Z" fill="#D4AF37" stroke="#997A15" stroke-width="1.5" />
+                <rect x="98" y="52" width="44" height="18" rx="3" fill="#C5A059" stroke="#8A6B29" stroke-width="1.5" />
+                <rect x="75" y="74" width="90" height="185" rx="6" fill="url(#heroNoirGrad)" stroke="#111111"
+                  stroke-width="2" />
+                <rect x="78" y="78" width="6" height="177" rx="3" fill="white" opacity="0.18" />
+                <rect x="90" y="145" width="60" height="58" rx="3" fill="#0A0A0A" stroke="#C5A059"
+                  stroke-width="1.5" />
+                <text x="120" y="172" text-anchor="middle" font-family="'Cinzel', serif" font-size="8"
+                  letter-spacing="2" fill="#D4AF37">{{ prod.name.toUpperCase() }}</text>
+                <text x="120" y="188" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="5"
+                  letter-spacing="1" fill="#999">EXTRAIT</text>
+                <defs>
+                  <linearGradient id="heroNoirGrad" x1="75" y1="74" x2="165" y2="259" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#2D2D2D" />
+                    <stop offset="40%" stop-color="#141414" />
+                    <stop offset="100%" stop-color="#080808" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              }
+              @case ('emerald') {
+              <svg class="flacon-hero-svg" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="120" cy="275" rx="68" ry="12" fill="#525E4B" opacity="0.3" />
+                <rect x="105" y="44" width="30" height="24" rx="4" fill="#F4EFE6" stroke="#D1C7B7" stroke-width="2" />
+                <rect x="102" y="68" width="36" height="12" rx="2" fill="#C5A059" />
+                <ellipse cx="120" cy="175" rx="64" ry="70" fill="url(#heroEmeraldGrad)" stroke="#3E5F48"
+                  stroke-width="2" />
+                <ellipse cx="120" cy="175" rx="38" ry="42" fill="rgba(255,255,255,0.06)" stroke="#C5A059"
+                  stroke-width="1" />
+                <text x="120" y="176" text-anchor="middle" font-family="'Playfair Display', serif" font-size="9"
+                  font-style="italic" fill="#E2E8F0">{{ prod.name }}</text>
+                <text x="120" y="192" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="5"
+                  letter-spacing="1.5" fill="#A7F3D0">PARFUM</text>
+                <path d="M72 135 Q78 105 112 100" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                  opacity="0.35" />
+                <defs>
+                  <radialGradient id="heroEmeraldGrad" cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stop-color="#6EE7B7" />
+                    <stop offset="50%" stop-color="#047857" />
+                    <stop offset="100%" stop-color="#064E3B" />
+                  </radialGradient>
+                </defs>
+              </svg>
+              }
+              @case ('wood') {
+              <svg class="flacon-hero-svg" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="120" cy="285" rx="55" ry="9" fill="rgba(0,0,0,0.25)" filter="blur(4px)" />
+                <polygon points="100,30 140,30 152,60 88,60" fill="#6B3A1C" stroke="#4A2610" stroke-width="2" />
+                <rect x="80" y="68" width="80" height="200" rx="6" fill="url(#heroWoodGrad)" stroke="#5A2E0F"
+                  stroke-width="2" />
+                <rect x="86" y="74" width="10" height="188" rx="4" fill="white" opacity="0.22" />
+                <rect x="96" y="142" width="48" height="52" rx="3" fill="#F8F4EB" stroke="#A77A3F"
+                  stroke-width="1" />
+                <text x="120" y="165" text-anchor="middle" font-family="'Cinzel', serif" font-size="7"
+                  letter-spacing="1.5" fill="#2E1B0E">{{ prod.name.toUpperCase() }}</text>
+                <text x="120" y="180" text-anchor="middle" font-family="'Cinzel', serif" font-size="5"
+                  letter-spacing="1" fill="#78350F">EXTRAIT</text>
+                <defs>
+                  <linearGradient id="heroWoodGrad" x1="80" y1="68" x2="160" y2="268" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#B45309" />
+                    <stop offset="60%" stop-color="#78350F" />
+                    <stop offset="100%" stop-color="#451A03" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              }
+              @default {
+              <svg class="flacon-hero-svg" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="120" cy="290" rx="58" ry="9" fill="rgba(0,0,0,0.18)" filter="blur(4px)" />
+                <circle cx="120" cy="38" r="15" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2" />
+                <rect x="110" y="53" width="20" height="15" fill="#E2E8F0" stroke="#CBD5E1" />
+                <rect x="75" y="70" width="90" height="200" rx="20" fill="url(#heroRoseGrad)" stroke="#F472B6"
+                  stroke-width="1.5" />
+                <rect x="82" y="78" width="10" height="184" rx="4" fill="white" opacity="0.45" />
+                <rect x="90" y="145" width="60" height="50" rx="3" fill="rgba(255,255,255,0.7)" stroke="#FDA4AF"
+                  stroke-width="0.75" />
+                <text x="120" y="168" text-anchor="middle" font-family="'Playfair Display', serif" font-style="italic"
+                  font-size="7.5" fill="#881337">{{ prod.name }}</text>
+                <text x="120" y="182" text-anchor="middle" font-family="'Cinzel', serif" font-size="5"
+                  letter-spacing="1.5" fill="#9D174D">PARFUM</text>
+                <defs>
+                  <linearGradient id="heroRoseGrad" x1="75" y1="70" x2="165" y2="270" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FCE7F3" />
+                    <stop offset="50%" stop-color="#FBCFE8" />
+                    <stop offset="100%" stop-color="#F472B6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              }
+              }
+            </div>
+            }
+            @case (1) {
+            <!-- Close-up Label & Wax Seal View -->
+            <div class="macro-detail-view">
+              <div class="macro-card">
+                <div class="wax-seal-badge">
+                  <span class="seal-emblem">✨</span>
+                  <span class="seal-brand">LAMSA</span>
+                  <span class="seal-sub">PARFUMS</span>
+                </div>
+                <h4 class="macro-title">{{ prod.name }}</h4>
+                <p class="macro-subtitle">{{ prod.concentration || 'EXTRAIT DE PARFUM' }}</p>
+                <div class="macro-divider"></div>
+                <p class="macro-caption">AUTHENTIC BATCH #{{ prod.id.toUpperCase() }} • GRASSE HARVEST</p>
+              </div>
+            </div>
+            }
+            @case (2) {
+            <!-- Ingredients Scent Composition View -->
+            <div class="ingredients-view">
+              <div class="ingredients-card">
+                <span class="ing-badge">BOTANICAL EXTRACTS</span>
+                <h4 class="ing-title">Primary Notes</h4>
+                <ul class="ing-list">
+                  @for (note of prod.notes; track note) {
+                  <li><span class="bullet">◆</span> {{ note }}</li>
+                  }
+                </ul>
+              </div>
+            </div>
+            }
+            @case (3) {
+            <!-- Signature Box & Packaging View -->
+            <div class="packaging-view">
+              <div class="box-presentation">
+                <div class="luxury-box-mockup">
+                  <div class="box-ribbon"></div>
+                  <div class="box-crest">LAMSA PARIS</div>
+                  <div class="box-label">{{ prod.name }}</div>
+                  <div class="box-footer">SIGNATURE GIFT PACKAGING</div>
+                </div>
+              </div>
+            </div>
+            }
+            }
+          </div>
+
+          <div class="stage-watermark">LAMSA HAUTE PARFUMERIE</div>
+        </div>
+
+        <!-- Thumbnail Strip Switcher -->
+        <div class="thumbnail-strip" role="region" aria-label="Product detail image thumbnails">
+          <button type="button" class="thumb-card" [class.active]="activeImageIndex() === 0" (click)="selectImage(0)"
+            aria-label="View Flacon Front">
+            <div class="thumb-icon flacon-icon"></div>
+            <span class="thumb-label">Flacon View</span>
+          </button>
+          <button type="button" class="thumb-card" [class.active]="activeImageIndex() === 1" (click)="selectImage(1)"
+            aria-label="View Label Details">
+            <div class="thumb-icon label-icon"></div>
+            <span class="thumb-label">Crest & Label</span>
+          </button>
+          <button type="button" class="thumb-card" [class.active]="activeImageIndex() === 2" (click)="selectImage(2)"
+            aria-label="View Notes Ingredients">
+            <div class="thumb-icon notes-icon"></div>
+            <span class="thumb-label">Scent Notes</span>
+          </button>
+          <button type="button" class="thumb-card" [class.active]="activeImageIndex() === 3" (click)="selectImage(3)"
+            aria-label="View Gift Packaging">
+            <div class="thumb-icon box-icon"></div>
+            <span class="thumb-label">Gift Packaging</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Product Info & Purchase Form -->
+      <div class="product-details-column">
+        <!-- Tags / Category Pill Row -->
+        <div class="tags-row">
+          @if (prod.tags && prod.tags.length > 0) {
+          @for (tag of prod.tags; track tag) {
+          <span class="tag-pill">{{ tag }}</span>
+          }
+          } @else {
+          <span class="tag-pill">{{ prod.category.toUpperCase() }}</span>
+          @if (prod.badge) {
+          <span class="tag-pill highlight">{{ prod.badge }}</span>
+          }
+          }
+        </div>
+
+        <!-- Product Name -->
+        <h1 class="product-title">{{ prod.name }}</h1>
+
+        <!-- Price & Availability -->
+        <div class="price-stock-row">
+          <span class="product-price">${{ unitPrice() }}</span>
+          <span class="availability-badge" [class.limited]="prod.availability === 'LIMITED STOCK'">
+            <span class="status-dot"></span>
+            <span class="status-text">Available in Stock</span>
+          </span>
+        </div>
+
+        <!-- Volume Selector -->
+        <div class="volume-selector-section">
+          <div class="section-label">SELECT VOLUME</div>
+          <div class="volume-options-grid">
+            @if (prod.volumes && prod.volumes.length > 0) {
+            @for (vol of prod.volumes; track vol.size) {
+            <button type="button" class="volume-card" [class.selected]="selectedVolume()?.size === vol.size"
+              (click)="selectVolume(vol)">
+              <span class="vol-size">{{ vol.size }}</span>
+              <span class="vol-price">${{ vol.price }}</span>
+            </button>
+            }
+            } @else {
+            <button type="button" class="volume-card selected">
+              <span class="vol-size">100 ml</span>
+              <span class="vol-price">${{ prod.price }}</span>
+            </button>
+            }
+          </div>
+        </div>
+
+        <!-- Gift Wrapping Option Switch -->
+        <div class="gift-wrapping-box">
+          <div class="gift-wrap-info">
+            <div class="gift-wrap-title">Complementary Signature Gift Wrapping</div>
+            <div class="gift-wrap-sub">Enclosed in textured paper box with custom wax seal stamp.</div>
+          </div>
+          <button type="button" class="toggle-switch" [class.checked]="giftWrap()" (click)="toggleGiftWrap()"
+            aria-label="Toggle gift wrapping option">
+            <span class="toggle-slider"></span>
+          </button>
+        </div>
+
+        <!-- Purchase Actions (Quantity + Add to Cart) -->
+        <div class="purchase-actions-bar">
+          <!-- Quantity Control -->
+          <div class="qty-control" role="group" aria-label="Quantity Selector">
+            <button type="button" class="qty-btn" (click)="decrementQuantity()" [disabled]="quantity() <= 1"
+              aria-label="Decrease quantity">
+              -
+            </button>
+            <span class="qty-display">{{ quantity() }}</span>
+            <button type="button" class="qty-btn" (click)="incrementQuantity()" aria-label="Increase quantity">
+              +
+            </button>
+          </div>
+
+          <!-- Add to Cart CTA Button -->
+          <button type="button" class="btn-add-to-cart" [class.added]="isAddedToCart()" (click)="onAddToCart()">
+            @if (isAddedToCart()) {
+            <span>ADDED TO CART ✓</span>
+            } @else {
+            <span>ADD TO CART | ${{ totalPrice() }}</span>
+            }
+          </button>
+        </div>
+
+        <!-- Scent Anatomy Section -->
+        <div class="scent-anatomy-section">
+          <h3 class="anatomy-title">Scent Anatomy</h3>
+          <p class="anatomy-description">
+            {{ prod.description || prod.longDescription }}
+          </p>
+
+          <div class="scent-notes-table">
+            <div class="note-row">
+              <div class="note-type">TOP NOTES</div>
+              <div class="note-values">
+                @if (prod.scentNotes?.top) {
+                {{ prod.scentNotes?.top?.join(', ') }}
+                } @else {
+                {{ prod.notes.slice(0, 2).join(', ') }}
+                }
+              </div>
+            </div>
+            <div class="note-row">
+              <div class="note-type">HEART NOTES</div>
+              <div class="note-values">
+                @if (prod.scentNotes?.heart) {
+                {{ prod.scentNotes?.heart?.join(', ') }}
+                } @else {
+                {{ prod.notes.slice(2, 4).join(', ') }}
+                }
+              </div>
+            </div>
+            <div class="note-row">
+              <div class="note-type">BASE NOTES</div>
+              <div class="note-values">
+                @if (prod.scentNotes?.base) {
+                {{ prod.scentNotes?.base?.join(', ') }}
+                } @else {
+                {{ prod.notes.slice(4).join(', ') || 'Wild Mysore Sandalwood, Cinnamon, Patchouli' }}
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Olfactory Companions Section (Related Products) -->
+    <section class="related-products-section">
+      <div class="section-header-block">
+        <h2 class="section-title">Olfactory Companions</h2>
+        <p class="section-subtitle">FRAGRANCES OF SIMILAR OLFACTORY SOPHISTICATION</p>
+      </div>
+
+      <div class="related-grid">
+        @for (relProd of relatedProducts(); track relProd.id) {
+        <div class="related-grid-item">
+          <app-product-card [product]="relProd" (addToCart)="onRelatedAddToCart($event)">
+          </app-product-card>
+        </div>
+        }
+      </div>
+    </section>
+    }
+  </div>
+</div>

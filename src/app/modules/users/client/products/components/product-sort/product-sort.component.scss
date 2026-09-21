@@ -1,0 +1,120 @@
+.product-sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0 1.25rem 0;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(232, 226, 216, 0.7);
+  user-select: none;
+}
+
+.products-count-display {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #7A746A;
+  text-transform: uppercase;
+
+  .count-number {
+    color: #141414;
+    font-weight: 700;
+  }
+}
+
+.sort-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.sort-prefix {
+  font-size: 0.78rem;
+  color: #7D786E;
+  font-family: var(--font-sans);
+}
+
+.custom-select-wrapper {
+  position: relative;
+}
+
+.sort-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: #141414;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: #E2DBD0;
+  }
+}
+
+.dropdown-chevron {
+  transition: transform 0.2s ease;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.sort-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 180px;
+  background-color: #FFFFFF;
+  border: 1px solid #E8E2D8;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  z-index: 50;
+}
+
+.sort-option-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  font-size: 0.78rem;
+  color: #4A463F;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: #FAF7F2;
+    color: #141414;
+  }
+
+  &.active {
+    font-weight: 600;
+    color: #141414;
+    background-color: #F5EFEB;
+  }
+
+  .check-icon {
+    font-size: 0.7rem;
+    color: #C5A059;
+  }
+}

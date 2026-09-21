@@ -1,0 +1,101 @@
+.occasion-section {
+      padding: 5rem 0;
+      background-color: var(--lamsa-sand);
+      border-top: 1px solid var(--lamsa-border);
+      border-bottom: 1px solid var(--lamsa-border);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+
+      .section-title {
+        font-size: 2.5rem;
+        color: var(--lamsa-dark);
+        margin-bottom: 0.75rem;
+
+        @media (min-width: 768px) {
+          font-size: 3rem;
+        }
+      }
+
+      .section-desc {
+        font-size: 1rem;
+        color: var(--lamsa-text-muted);
+        max-width: 580px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .occasions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+
+      @media (min-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .occasion-card {
+      background-color: var(--lamsa-white);
+      border: 1px solid var(--lamsa-border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+
+      &:hover {
+        border-color: var(--lamsa-gold);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+
+        .explore-link {
+          color: var(--lamsa-gold-hover);
+          padding-left: 0.25rem;
+        }
+      }
+    }
+
+    .occasion-placeholder {
+      aspect-ratio: 4 / 5;
+    }
+
+    .card-overlay {
+      padding: 1.5rem;
+      background-color: var(--lamsa-white);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .category-subtitle {
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--lamsa-gold);
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .category-title {
+        font-size: 1.375rem;
+        color: var(--lamsa-dark);
+        margin-bottom: 0.75rem;
+      }
+
+      .explore-link {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--lamsa-dark);
+        transition: var(--transition-smooth);
+      }
+    }

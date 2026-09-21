@@ -1,0 +1,46 @@
+<div class="product-sort-bar">
+  <!-- Count Display -->
+  <div class="products-count-display">
+    <span class="count-number">{{ productService.totalItemsCount() }}</span>
+    <span class="count-text">PRODUCTS AVAILABLE</span>
+  </div>
+
+  <!-- Sort Dropdown Container -->
+  <div class="sort-selector-container">
+    <label id="sort-label" class="sort-prefix">Sort by:</label>
+    
+    <div class="custom-select-wrapper">
+      <button 
+        type="button" 
+        class="sort-trigger-btn"
+        (click)="toggleDropdown()"
+        aria-haspopup="listbox"
+        [attr.aria-expanded]="isDropdownOpen"
+        aria-labelledby="sort-label">
+        <span class="selected-text">{{ currentSortLabel }}</span>
+        <svg class="dropdown-chevron" [class.rotated]="isDropdownOpen" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      @if (isDropdownOpen) {
+        <div class="dropdown-backdrop" (click)="isDropdownOpen = false"></div>
+        <ul class="sort-dropdown-menu" role="listbox" aria-labelledby="sort-label">
+          @for (option of sortOptions; track option.value) {
+            <li 
+              class="sort-option-item"
+              [class.active]="productService.sortOption() === option.value"
+              role="option"
+              [attr.aria-selected]="productService.sortOption() === option.value"
+              (click)="selectSort(option.value)">
+              {{ option.label }}
+              @if (productService.sortOption() === option.value) {
+                <span class="check-icon">&#10003;</span>
+              }
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</div>

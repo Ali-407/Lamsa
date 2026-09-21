@@ -1,0 +1,9 @@
+.client-layout-shell {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .client-main-content {
+      flex: 1;
+    }

@@ -1,0 +1,713 @@
+.product-detail-page {
+  background-color: #F9F8F6;
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  color: #1A1A1A;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 4rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 1. MAIN PRODUCT GRID LAYOUT                                                */
+/* -------------------------------------------------------------------------- */
+.product-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 5rem;
+  align-items: start;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* LEFT COLUMN: HERO IMAGE STAGE & THUMBNAILS                                */
+/* -------------------------------------------------------------------------- */
+.gallery-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hero-image-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 4.5;
+  background: linear-gradient(135deg, #F3F1EC 0%, #EAE7E0 100%);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(255, 238, 204, 0.45) 0%, rgba(243, 241, 236, 0) 70%);
+    pointer-events: none;
+  }
+
+  .stage-view-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stage-watermark {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+  }
+}
+
+/* SVG Bottle & Macro detail views */
+.bottle-view-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .flacon-hero-svg {
+    width: 68%;
+    max-height: 82%;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+    transition: transform 0.4s ease;
+  }
+
+  &:hover .flacon-hero-svg {
+    transform: scale(1.02);
+  }
+}
+
+.macro-detail-view,
+.ingredients-view,
+.packaging-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.macro-card,
+.ingredients-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid #C5A059;
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+  .wax-seal-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+    font-family: 'Cinzel', serif;
+
+    .seal-emblem {
+      font-size: 1.5rem;
+    }
+    .seal-brand {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #141414;
+    }
+    .seal-sub {
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      color: #888;
+    }
+  }
+
+  .macro-title,
+  .ing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: #141414;
+    margin-bottom: 0.3rem;
+  }
+
+  .macro-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    color: #8A6B29;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .macro-divider {
+    height: 1px;
+    width: 60px;
+    background: #C5A059;
+    margin: 1rem auto;
+  }
+
+  .macro-caption {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    color: #666;
+  }
+
+  .ing-badge {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    color: #16A34A;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .ing-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    li {
+      font-size: 0.85rem;
+      color: #333;
+
+      .bullet {
+        color: #C5A059;
+        font-size: 0.65rem;
+        margin-right: 0.4rem;
+      }
+    }
+  }
+}
+
+.luxury-box-mockup {
+  width: 220px;
+  height: 260px;
+  background: #181818;
+  border: 1px solid #333;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  .box-ribbon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    background: #C5A059;
+  }
+
+  .box-crest {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #C5A059;
+    z-index: 2;
+    margin-bottom: 1.5rem;
+  }
+
+  .box-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #F8F4EB;
+    z-index: 2;
+    margin-bottom: 2rem;
+  }
+
+  .box-footer {
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+    color: #888;
+    z-index: 2;
+  }
+}
+
+/* THUMBNAIL STRIP */
+.thumbnail-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  .thumb-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E0D9;
+    border-radius: 4px;
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #A39E93;
+    }
+
+    &.active {
+      border-color: #141414;
+      background: #FAFAFA;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      .thumb-label {
+        color: #141414;
+        font-weight: 600;
+      }
+    }
+
+    .thumb-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #EFECE6;
+      position: relative;
+
+      &.flacon-icon::after {
+        content: '🍾';
+        font-size: 12px;
+        position: absolute;
+        top: 2px;
+        left: 5px;
+      }
+      &.label-icon::after {
+        content: '🏷️';
+        font-size: 11px;
+        position: absolute;
+        top: 3px;
+        left: 5px;
+      }
+      &.notes-icon::after {
+        content: '🌿';
+        font-size: 11px;
+        position: absolute;
+        top: 3px;
+        left: 5px;
+      }
+      &.box-icon::after {
+        content: '🎁';
+        font-size: 11px;
+        position: absolute;
+        top: 3px;
+        left: 5px;
+      }
+    }
+
+    .thumb-label {
+      font-size: 0.7rem;
+      color: #666;
+      letter-spacing: 0.3px;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* RIGHT COLUMN: PRODUCT DETAILS & PURCHASING FORM                           */
+/* -------------------------------------------------------------------------- */
+.product-details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .tag-pill {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      background: #FFFFFF;
+      border: 1px solid #E2E0D8;
+      color: #555;
+      text-transform: uppercase;
+
+      &.highlight {
+        background: #141414;
+        color: #FFFFFF;
+        border-color: #141414;
+      }
+    }
+  }
+
+  .product-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #141414;
+    line-height: 1.15;
+    margin: 0;
+
+    @media (max-width: 576px) {
+      font-size: 2rem;
+    }
+  }
+
+  .price-stock-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #ECEAE4;
+
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #141414;
+    }
+
+    .availability-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #15803D;
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #16A34A;
+      }
+
+      &.limited {
+        color: #D97706;
+        .status-dot {
+          background-color: #D97706;
+        }
+      }
+    }
+  }
+}
+
+/* VOLUME SELECTOR */
+.volume-selector-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #666;
+    text-transform: uppercase;
+  }
+
+  .volume-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+
+    .volume-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E0D8;
+      border-radius: 4px;
+      padding: 0.9rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      .vol-size {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #141414;
+      }
+
+      .vol-price {
+        font-size: 0.75rem;
+        color: #666;
+      }
+
+      &:hover {
+        border-color: #999;
+      }
+
+      &.selected {
+        background: #FFFFFF;
+        border: 2px solid #141414;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+        .vol-size {
+          color: #141414;
+        }
+
+        .vol-price {
+          color: #141414;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+/* GIFT WRAPPING OPTION */
+.gift-wrapping-box {
+  background: #F3F1EC;
+  border-radius: 4px;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #E6E4DD;
+
+  .gift-wrap-info {
+    .gift-wrap-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #141414;
+      margin-bottom: 0.2rem;
+    }
+
+    .gift-wrap-sub {
+      font-size: 0.72rem;
+      color: #666;
+    }
+  }
+
+  .toggle-switch {
+    width: 44px;
+    height: 24px;
+    background-color: #D1CDC4;
+    border-radius: 12px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+
+    .toggle-slider {
+      width: 18px;
+      height: 18px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    &.checked {
+      background-color: #141414;
+
+      .toggle-slider {
+        transform: translateX(20px);
+      }
+    }
+  }
+}
+
+/* PURCHASE ACTIONS BAR */
+.purchase-actions-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.5rem;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #D5D2C8;
+    border-radius: 4px;
+    background: #FFFFFF;
+    height: 52px;
+
+    .qty-btn {
+      width: 42px;
+      height: 100%;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: #141414;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+
+      &:hover:not(:disabled) {
+        background: #F4F3EE;
+      }
+
+      &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+    }
+
+    .qty-display {
+      width: 38px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #141414;
+    }
+  }
+
+  .btn-add-to-cart {
+    flex: 1;
+    height: 52px;
+    background-color: #141414;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background-color: #2D2D2D;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    &.added {
+      background-color: #15803D;
+    }
+  }
+}
+
+/* SCENT ANATOMY SECTION */
+.scent-anatomy-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ECEAE4;
+
+  .anatomy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #141414;
+    margin-bottom: 0.85rem;
+  }
+
+  .anatomy-description {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #555555;
+    margin-bottom: 1.75rem;
+  }
+
+  .scent-notes-table {
+    display: flex;
+    flex-direction: column;
+
+    .note-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid #ECEAE4;
+      align-items: center;
+
+      @media (max-width: 576px) {
+        grid-template-columns: 110px 1fr;
+      }
+
+      .note-type {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #141414;
+        text-transform: uppercase;
+      }
+
+      .note-values {
+        font-size: 0.82rem;
+        color: #555;
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. OLFACTORY COMPANIONS SECTION (RELATED PRODUCTS)                         */
+/* -------------------------------------------------------------------------- */
+.related-products-section {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid #ECEAE4;
+
+  .section-header-block {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 500;
+      color: #141414;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: #888888;
+      text-transform: uppercase;
+    }
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

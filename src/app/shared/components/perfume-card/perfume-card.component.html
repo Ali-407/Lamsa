@@ -1,0 +1,27 @@
+<article class="perfume-card" tabindex="0">
+      <!-- Image Placeholder Box (No External Image URLs Used) -->
+      <div class="card-media-wrapper">
+        <div class="image-placeholder-box">
+          <svg class="placeholder-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M9 3h6v3H9zM7 6h10v15H7zM10 11h4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="placeholder-label">{{ perfume?.name || 'Fragrance Image' }}</span>
+        </div>
+      </div>
+
+      <!-- Card Details -->
+      <div class="card-body">
+        <div class="card-header">
+          <h3 class="product-title heading-serif">{{ perfume?.name }}</h3>
+          <span class="product-price">\${{ perfume?.price }}</span>
+        </div>
+
+        @if (perfume?.scentFamily) {
+          <p class="product-subtitle">{{ perfume?.scentFamily }}</p>
+        }
+
+        <button class="add-to-cart-btn" aria-label="Add to Bag">
+          <span>ADD TO CART +</span>
+        </button>
+      </div>
+    </article>
