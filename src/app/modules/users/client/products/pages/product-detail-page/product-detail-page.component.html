@@ -329,7 +329,7 @@
           </div>
 
           <!-- Add to Cart CTA Button -->
-          <button type="button" class="btn-add-to-cart" [class.added]="isAddedToCart()" (click)="onAddToCart()">
+          <button type="button" class="btn-add-to-cart" [class.added]="isAddedToCart()" [disabled]="isAddedToCart()" (click)="onAddToCart()">
             @if (isAddedToCart()) {
             <span>ADDED TO CART ✓</span>
             } @else {
@@ -337,6 +337,13 @@
             }
           </button>
         </div>
+
+        <!-- Success Notification -->
+        @if (isAddedToCart()) {
+          <div class="toast-notification">
+            Successfully added to cart!
+          </div>
+        }
 
         <!-- Scent Anatomy Section -->
         <div class="scent-anatomy-section">

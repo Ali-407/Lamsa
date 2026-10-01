@@ -612,6 +612,24 @@ export class ProductService {
     }
   }
 
+  applyCategoryBrowse(filter: {
+    categories?: string[];
+    scentFamilies?: string[];
+    occasions?: string[];
+  }): void {
+    this.resetAllFilters();
+    if (filter.categories?.length) {
+      this.selectedCategories.set(filter.categories);
+    }
+    if (filter.scentFamilies?.length) {
+      this.selectedScentFamilies.set(filter.scentFamilies);
+    }
+    if (filter.occasions?.length) {
+      this.selectedOccasions.set(filter.occasions);
+    }
+    this.currentPage.set(1);
+  }
+
   resetAllFilters(): void {
     this.selectedCategories.set([]);
     this.selectedScentFamilies.set([]);

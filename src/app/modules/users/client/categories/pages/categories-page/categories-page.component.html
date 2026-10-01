@@ -1,0 +1,50 @@
+<div class="categories-page">
+  <div class="container page-container">
+    <app-breadcrumb [items]="breadcrumbs"></app-breadcrumb>
+
+    <header class="page-header">
+      <h1 class="page-title">Fragrance Categories</h1>
+      <p class="page-subtitle">
+        Explore the olfactory families, precious concentrations, and considered rituals that shape the
+        Odoratus collection.
+      </p>
+    </header>
+
+    <div class="category-grid" role="list">
+      @for (category of categories(); track category.id) {
+        <article class="category-card" role="listitem">
+          <button
+            type="button"
+            class="category-card-button"
+            (click)="exploreCategory(category)"
+            [attr.aria-label]="'Explore ' + category.title"
+          >
+            <div class="category-image-wrap">
+              @if (category.imageUrl) {
+                <img
+                  class="category-image"
+                  [src]="category.imageUrl"
+                  [alt]="category.title + ' category'"
+                  loading="lazy"
+                />
+              } @else {
+                <div class="category-image category-image--placeholder" aria-hidden="true"></div>
+              }
+              <span class="category-scrim" aria-hidden="true"></span>
+              <span class="explore-affordance" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M7 17L17 7M17 7H8M17 7V16" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+
+            <div class="category-details">
+              <h2 class="category-title">{{ category.title }}</h2>
+              <p class="category-notes">{{ category.notes }}</p>
+            </div>
+          </button>
+        </article>
+      }
+    </div>
+  </div>
+</div>

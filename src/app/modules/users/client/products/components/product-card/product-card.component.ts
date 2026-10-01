@@ -17,10 +17,12 @@ export class ProductCardComponent {
   isAdded = false;
 
   onAddToCart(): void {
-    this.isAdded = true;
-    this.addToCart.emit(this.product);
-    setTimeout(() => {
-      this.isAdded = false;
-    }, 1500);
+    if (!this.isAdded) {
+      this.isAdded = true;
+      this.addToCart.emit(this.product);
+      setTimeout(() => {
+        this.isAdded = false;
+      }, 3000);
+    }
   }
 }

@@ -7,6 +7,7 @@ import { ProductSortComponent } from '../../components/product-sort/product-sort
 import { ProductPaginationComponent } from '../../components/product-pagination/product-pagination.component';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
+import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-product-list-page',
@@ -24,6 +25,7 @@ import { Product } from '../../models/product.model';
 })
 export class ProductListPageComponent {
   readonly productService = inject(ProductService);
+  readonly cartService = inject(CartService);
 
   readonly breadcrumbs: BreadcrumbItem[] = [
     { label: 'Home', url: '/' },
@@ -32,6 +34,6 @@ export class ProductListPageComponent {
   ];
 
   onProductAddToCart(product: Product): void {
-    console.log(`Product added to cart: ${product.name} (${product.id})`);
+    this.cartService.addToCart(product);
   }
 }

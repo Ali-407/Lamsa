@@ -6,4 +6,5 @@ export interface Perfume {
   scentFamily?: string;
   volume?: string;
   description?: string;
+  images?:string
 }

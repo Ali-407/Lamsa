@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../../../../modules/users/client/cart/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
 export class NavbarComponent {
   isMobileMenuOpen = signal(false);
   isScrolled = signal(false);
+  cartService = inject(CartService);
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen.update(state => !state);

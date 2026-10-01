@@ -1,0 +1,80 @@
+<div class="cart-page-container">
+  <div class="breadcrumb">
+    <a routerLink="/">Home</a> / <span>Cart</span>
+  </div>
+
+  <div class="cart-header">
+    <h1>Your Cart</h1>
+    <span class="item-count">{{ cartService.itemCount() }} ITEMS</span>
+  </div>
+
+  <div class="cart-content" *ngIf="cartService.cartItems().length > 0; else emptyCart">
+    
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartService.cartItems()">
+        <div class="item-image">
+          <img [src]="item.image" [alt]="item.name">
+        </div>
+        
+        <div class="item-details">
+          <div class="item-info">
+            <h3 class="item-name">{{ item.name }}</h3>
+            <span class="item-size">{{ item.size }}</span>
+          </div>
+          
+          <div class="item-actions">
+            <div class="quantity-selector">
+              <button (click)="cartService.updateQuantity(item.id, -1)" class="qty-btn" [disabled]="item.quantity <= 1">-</button>
+              <span class="qty-value">{{ item.quantity }}</span>
+              <button (click)="cartService.updateQuantity(item.id, 1)" class="qty-btn">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-price-remove">
+          <span class="item-price">{{ item.price }} EGP</span>
+          <button (click)="cartService.removeItem(item.id)" class="remove-btn">REMOVE</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary-wrapper">
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>{{ cartService.subtotal() }} EGP</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Delivery</span>
+          <span>{{ cartService.deliveryFee() }} EGP</span>
+        </div>
+        
+        <div class="summary-divider"></div>
+        
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span>{{ cartService.total() }} EGP</span>
+        </div>
+        
+        <button class="checkout-btn" routerLink="/checkout">PROCEED TO CHECKOUT</button>
+        
+        <div class="secure-checkout">
+          SECURE CHECKOUT - VISA - MASTERCARD - AMEX
+        </div>
+      </div>
+      
+      <a routerLink="/products" class="continue-shopping">CONTINUE SHOPPING</a>
+    </div>
+
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart-message">
+      <p>Your cart is empty.</p>
+      <a routerLink="/products" class="continue-shopping-btn">CONTINUE SHOPPING</a>
+    </div>
+  </ng-template>
+</div>

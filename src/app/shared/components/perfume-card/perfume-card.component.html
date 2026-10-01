@@ -13,15 +13,22 @@
       <div class="card-body">
         <div class="card-header">
           <h3 class="product-title heading-serif">{{ perfume?.name }}</h3>
-          <span class="product-price">\${{ perfume?.price }}</span>
+          <span class="product-price">{{ perfume?.price }} EGP</span>
         </div>
 
         @if (perfume?.scentFamily) {
           <p class="product-subtitle">{{ perfume?.scentFamily }}</p>
         }
 
-        <button class="add-to-cart-btn" aria-label="Add to Bag">
-          <span>ADD TO CART +</span>
+        <button (click)="onAddToCart()" [disabled]="isAdding" class="add-to-cart-btn" aria-label="Add to Bag">
+          <span>{{ isAdding ? 'ADDED \u2713' : 'ADD TO CART +' }}</span>
         </button>
       </div>
+
+      <!-- Success Notification -->
+      @if (showNotification) {
+        <div class="toast-notification">
+          Successfully added to cart!
+        </div>
+      }
     </article>

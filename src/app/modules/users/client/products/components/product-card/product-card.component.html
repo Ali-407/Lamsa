@@ -212,7 +212,7 @@
   <div class="product-info">
     <div class="product-header">
       <h3 class="product-name" [routerLink]="['/products', product.id]" style="cursor: pointer;">{{ product.name }}</h3>
-      <span class="product-price">${{ product.price }}</span>
+      <span class="product-price">{{ product.price }} EGP</span>
     </div>
 
     <div class="product-meta">
@@ -224,7 +224,7 @@
     </div>
 
     <!-- Action Button -->
-    <button type="button" class="btn-add-cart" [class.added]="isAdded" (click)="onAddToCart()"
+    <button type="button" class="btn-add-cart" [class.added]="isAdded" [disabled]="isAdded" (click)="onAddToCart()"
       [attr.aria-label]="'Add ' + product.name + ' to cart'">
       @if (isAdded) {
       <span>ADDED TO BAG &#10003;</span>
@@ -233,4 +233,11 @@
       }
     </button>
   </div>
+
+  <!-- Success Notification -->
+  @if (isAdded) {
+    <div class="toast-notification">
+      Successfully added to cart!
+    </div>
+  }
 </article>

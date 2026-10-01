@@ -19,4 +19,20 @@ export const CLIENT_ROUTES: Routes = [
       import('./products/products.routes').then((m) => m.PRODUCTS_ROUTES)
   },
 
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./cart/cart.routes').then((m) => m.CART_ROUTES)
+  },
+
+  {
+    path: 'categories',
+    loadChildren: () =>
+      import('./categories/categories.routes').then((m) => m.CATEGORIES_ROUTES)
+  },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./checkout/checkout.routes').then((m) => m.CHECKOUT_ROUTES)
+  }
 ];

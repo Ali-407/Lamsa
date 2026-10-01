@@ -1,0 +1,113 @@
+<div class="checkout-page-container">
+  <div class="breadcrumb">
+    <a routerLink="/">Home</a> / <a routerLink="/cart">Cart</a> / <span>Checkout</span>
+  </div>
+
+  <div class="checkout-layout">
+    <!-- Left Column: Details -->
+    <div class="checkout-details">
+      <h1 class="page-title">Checkout</h1>
+      <p class="subtitle">Complete your delivery details to place your order.</p>
+
+      <h2 class="section-title">Delivery details</h2>
+
+      <form [formGroup]="checkoutForm" class="delivery-form">
+        <div class="form-group">
+          <label>RECIPIENT NAME</label>
+          <input type="text" formControlName="recipientName" placeholder="أحمد محمد">
+          <div class="error-msg" *ngIf="checkoutForm.get('recipientName')?.touched && checkoutForm.get('recipientName')?.invalid">
+            Name must be at least 3 letters (letters only).
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>PHONE NUMBER</label>
+          <input type="tel" formControlName="phoneNumber" placeholder="01xxxxxxxxx">
+          <div class="error-msg" *ngIf="checkoutForm.get('phoneNumber')?.touched && checkoutForm.get('phoneNumber')?.invalid">
+            Enter a valid Egyptian phone number (e.g. 01012345678).
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>DELIVERY ADDRESS</label>
+          <input type="text" formControlName="deliveryAddress" placeholder="48 Mercer Street, Apt 4B">
+          <div class="error-msg" *ngIf="checkoutForm.get('deliveryAddress')?.touched && checkoutForm.get('deliveryAddress')?.invalid">
+            Delivery address is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>CITY</label>
+          <input type="text" formControlName="city" placeholder="New York">
+          <div class="error-msg" *ngIf="checkoutForm.get('city')?.touched && checkoutForm.get('city')?.invalid">
+            City is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>DELIVERY NOTE - OPTIONAL</label>
+          <textarea formControlName="deliveryNote" rows="3" placeholder="Leave with the concierge if unavailable."></textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Right Column: Payment & Summary -->
+    <div class="checkout-sidebar">
+      <h2 class="section-title">Payment</h2>
+
+      <div class="payment-methods" [formGroup]="checkoutForm">
+        <label class="payment-option" [class.selected]="checkoutForm.get('paymentMethod')?.value === 'card'">
+          <input type="radio" formControlName="paymentMethod" value="card">
+          <span class="radio-custom"></span>
+          <span class="option-text">Credit / Debit Card</span>
+        </label>
+        
+        <div class="card-details" *ngIf="checkoutForm.get('paymentMethod')?.value === 'card'">
+          <input type="text" formControlName="cardNumber" placeholder="•••• •••• •••• 4242">
+          <div class="card-meta">
+            <input type="text" formControlName="cardExpiry" placeholder="Expires 08/29">
+            <span class="card-brand">VISA</span>
+          </div>
+          <div class="error-msg" *ngIf="(checkoutForm.get('cardNumber')?.touched && checkoutForm.get('cardNumber')?.invalid) || (checkoutForm.get('cardExpiry')?.touched && checkoutForm.get('cardExpiry')?.invalid)">
+            Card details are required.
+          </div>
+        </div>
+
+        <label class="payment-option mt-3" [class.selected]="checkoutForm.get('paymentMethod')?.value === 'cash'">
+          <input type="radio" formControlName="paymentMethod" value="cash">
+          <span class="radio-custom"></span>
+          <span class="option-text">Cash on Delivery</span>
+        </label>
+      </div>
+
+      <h2 class="section-title mt-5">Order Summary</h2>
+
+      <div class="order-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>{{ cartService.subtotal() }} EGP</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Delivery</span>
+          <span>{{ cartService.deliveryFee() }} EGP</span>
+        </div>
+        
+        <div class="summary-divider"></div>
+        
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span>{{ cartService.total() }} EGP</span>
+        </div>
+        
+        <button class="place-order-btn" (click)="placeOrder()" [disabled]="isProcessing">
+          {{ isProcessing ? 'PROCESSING...' : 'PLACE ORDER' }}
+        </button>
+        
+        <div class="secure-checkout">
+          SECURE CHECKOUT - VISA - MASTERCARD - AMEX
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

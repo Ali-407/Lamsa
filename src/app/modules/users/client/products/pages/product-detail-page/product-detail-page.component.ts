@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../../cart/services/cart.service';
 import { Product, VolumeOption } from '../../models/product.model';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../components/breadcrumb/breadcrumb.component';
@@ -10,13 +11,14 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../../components/breadcrumb
 @Component({
   selector: 'app-product-detail-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, ProductCardComponent, BreadcrumbComponent],
+  imports: [CommonModule, ProductCardComponent, BreadcrumbComponent],
   templateUrl: './product-detail-page.component.html',
   styleUrl: './product-detail-page.component.scss'
 })
 export class ProductDetailPageComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
   private destroyRef = inject(DestroyRef);
 
   product = signal<Product | undefined>(undefined);
@@ -118,10 +120,22 @@ export class ProductDetailPageComponent implements OnInit {
   }
 
   onAddToCart(): void {
+    if (this.isAddedToCart()) return;
+
+    const prod = this.product();
+    if (prod) {
+      this.cartService.addToCart({
+        ...prod,
+        quantity: this.quantity(),
+        size: this.selectedVolume()?.size || prod.volume,
+        price: this.unitPrice()
+      });
+    }
+
     this.isAddedToCart.set(true);
     setTimeout(() => {
       this.isAddedToCart.set(false);
-    }, 2000);
+    }, 3000);
   }
 
   onRelatedAddToCart(prod: Product): void {

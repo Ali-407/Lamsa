@@ -1,0 +1,76 @@
+<div class="gateway-container">
+  <div class="gateway-card">
+
+    <!-- Logo -->
+    <div class="gateway-logo">
+      <span class="logo-text">ODORATUS</span>
+      <span class="logo-sub">Secure Payment</span>
+    </div>
+
+    <!-- Processing / Saving -->
+    <ng-container *ngIf="stage() === 'processing' || stage() === 'saving'">
+      <div class="spinner-wrapper">
+        <div class="spinner">
+          <svg viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+          </svg>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="progressPercent()"></div>
+        </div>
+        <span class="progress-label">{{ progressPercent() }}%</span>
+      </div>
+
+      <p class="status-message">{{ statusMessage() }}</p>
+
+      <div class="order-amount" *ngIf="order">
+        <span class="amount-label">Charging</span>
+        <span class="amount-value">{{ order.total }} EGP</span>
+      </div>
+    </ng-container>
+
+    <!-- Success -->
+    <ng-container *ngIf="stage() === 'success'">
+      <div class="success-icon">
+        <svg viewBox="0 0 52 52">
+          <circle cx="26" cy="26" r="25" fill="none" />
+          <path d="M14.1 27.2l7.1 7.2 16.7-16.8" fill="none" />
+        </svg>
+      </div>
+      <h2 class="success-title">Payment Successful!</h2>
+      <p class="status-message">{{ statusMessage() }}</p>
+      <div class="order-amount" *ngIf="order">
+        <span class="amount-label">Paid</span>
+        <span class="amount-value">{{ order.total }} EGP</span>
+      </div>
+    </ng-container>
+
+    <!-- Failed -->
+    <ng-container *ngIf="stage() === 'failed'">
+      <div class="fail-icon">
+        <svg viewBox="0 0 52 52">
+          <circle cx="26" cy="26" r="25" fill="none" />
+          <path d="M16 16 36 36M36 16 16 36" fill="none" />
+        </svg>
+      </div>
+      <h2 class="fail-title">Payment Failed</h2>
+      <p class="status-message">{{ statusMessage() }}</p>
+      <div class="fail-actions">
+        <button class="btn-retry" (click)="retryPayment()">Try Again</button>
+        <button class="btn-back" (click)="goBack()">Back to Checkout</button>
+      </div>
+    </ng-container>
+
+    <!-- Security badge -->
+    <div class="security-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span>256-bit SSL Encrypted</span>
+    </div>
+  </div>
+</div>

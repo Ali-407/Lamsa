@@ -205,7 +205,7 @@
   justify-content: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: #141414;
     border-color: #141414;
     color: #FFFFFF;
@@ -216,4 +216,34 @@
     border-color: #285430;
     color: #FFFFFF;
   }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
+
+.toast-notification {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 3s forwards;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
 }
