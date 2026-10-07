@@ -331,6 +331,19 @@
       color: #666;
       letter-spacing: 0.3px;
     }
+
+    .thumb-card-image {
+      padding: 0;
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+
+    .thumb-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   }
 }
 
@@ -740,4 +753,27 @@
       grid-template-columns: 1fr;
     }
   }
+}
+
+
+.detail-real-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #F7F3EC 0%, #E7DED1 100%);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.detail-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.detail-real-box:hover .detail-real-img {
+  transform: scale(1.04);
 }

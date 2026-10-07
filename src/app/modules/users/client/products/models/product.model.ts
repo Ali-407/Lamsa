@@ -10,6 +10,8 @@ export interface ScentNotes {
 }
 
 export interface Product {
+  imageUrl?: string;
+  images?: string[];
   id: string;
   name: string;
   subtitle?: string;

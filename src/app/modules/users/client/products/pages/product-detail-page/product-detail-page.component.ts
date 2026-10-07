@@ -28,6 +28,8 @@ export class ProductDetailPageComponent implements OnInit {
   giftWrap = signal<boolean>(false);
   activeImageIndex = signal<number>(0);
   isAddedToCart = signal<boolean>(false);
+  isLoading = signal<boolean>(true);
+  error = signal<string | null>(null);
 
   // Dynamic breadcrumb items
   breadcrumbs = computed<BreadcrumbItem[]>(() => {
@@ -57,28 +59,30 @@ export class ProductDetailPageComponent implements OnInit {
       .subscribe((params) => {
         const id = params['id'];
         this.loadProduct(id);
-        // Scroll to top on navigation
         if (typeof window !== 'undefined') {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
   }
 
-  private loadProduct(id: string | undefined): void {
+  private async loadProduct(id: string | undefined): Promise<void> {
+    this.isLoading.set(true);
+    this.error.set(null);
+
     let targetProduct: Product | undefined;
     if (id) {
-      targetProduct = this.productService.getProductById(id);
+      targetProduct = await this.productService.fetchProductBySlug(id);
+      if (!targetProduct) {
+        targetProduct = this.productService.getProductById(id);
+      }
     }
 
-    // Fallback if not found or direct route without id
-    if (!targetProduct) {
-      targetProduct = this.productService.getProductById('santal-parchment') ?? this.productService.allProducts()[0];
+    if (!targetProduct && this.productService.allProducts().length > 0) {
+      targetProduct = this.productService.allProducts()[0];
     }
-
-    this.product.set(targetProduct);
 
     if (targetProduct) {
-      // Default selected volume (prefer 100ml or last available size matching screenshot)
+      this.product.set(targetProduct);
       if (targetProduct.volumes && targetProduct.volumes.length > 0) {
         const defaultVol = targetProduct.volumes.find(v => v.size.includes('100')) ?? targetProduct.volumes[targetProduct.volumes.length - 1];
         this.selectedVolume.set(defaultVol);
@@ -86,15 +90,17 @@ export class ProductDetailPageComponent implements OnInit {
         this.selectedVolume.set({ size: targetProduct.volume || '100 ml', price: targetProduct.price });
       }
 
-      // Load 4 related products for "Olfactory Companions"
       const related = this.productService.getRelatedProducts(targetProduct.id, 4);
       this.relatedProducts.set(related);
+    } else {
+      this.error.set('Product not found.');
     }
 
     this.quantity.set(1);
     this.giftWrap.set(false);
     this.activeImageIndex.set(0);
     this.isAddedToCart.set(false);
+    this.isLoading.set(false);
   }
 
   selectVolume(vol: VolumeOption): void {
@@ -119,6 +125,11 @@ export class ProductDetailPageComponent implements OnInit {
     this.activeImageIndex.set(index);
   }
 
+  activeProductImage(prod: Product): string | undefined {
+    const images = prod.images?.length ? prod.images : prod.imageUrl ? [prod.imageUrl] : [];
+    return images[this.activeImageIndex()] || images[0];
+  }
+
   onAddToCart(): void {
     if (this.isAddedToCart()) return;
 
@@ -139,6 +150,6 @@ export class ProductDetailPageComponent implements OnInit {
   }
 
   onRelatedAddToCart(prod: Product): void {
-    // Action handled by card
+    // Handled by card
   }
 }

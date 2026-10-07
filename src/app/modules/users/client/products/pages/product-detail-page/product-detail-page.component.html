@@ -14,6 +14,11 @@
 
           <!-- Dynamic SVG Flacon Art & Gallery View Switching -->
           <div class="stage-view-content">
+            @if (activeProductImage(prod); as realImage) {
+            <div class="detail-real-box">
+              <img [src]="realImage" [alt]="prod.name" class="detail-real-img" loading="eager" />
+            </div>
+            } @else {
             @switch (activeImageIndex()) {
             @case (0) {
             <!-- Front Flacon Studio View -->
@@ -223,6 +228,7 @@
             </div>
             }
             }
+            }
           </div>
 
           <div class="stage-watermark">LAMSA HAUTE PARFUMERIE</div>
@@ -230,6 +236,14 @@
 
         <!-- Thumbnail Strip Switcher -->
         <div class="thumbnail-strip" role="region" aria-label="Product detail image thumbnails">
+          @if (prod.images && prod.images.length > 0) {
+          @for (image of prod.images; track image; let idx = $index) {
+          <button type="button" class="thumb-card thumb-card-image" [class.active]="activeImageIndex() === idx" (click)="selectImage(idx)"
+            [attr.aria-label]="'View ' + prod.name + ' image ' + (idx + 1)">
+            <img [src]="image" [alt]="prod.name + ' thumbnail ' + (idx + 1)" class="thumb-image" loading="lazy" />
+          </button>
+          }
+          } @else {
           <button type="button" class="thumb-card" [class.active]="activeImageIndex() === 0" (click)="selectImage(0)"
             aria-label="View Flacon Front">
             <div class="thumb-icon flacon-icon"></div>
@@ -250,6 +264,7 @@
             <div class="thumb-icon box-icon"></div>
             <span class="thumb-label">Gift Packaging</span>
           </button>
+          }
         </div>
       </div>
 

@@ -1,12 +1,16 @@
 <article class="perfume-card" tabindex="0">
       <!-- Image Placeholder Box (No External Image URLs Used) -->
       <div class="card-media-wrapper">
+        @if (perfume?.imageUrl) {
+          <img [src]="perfume?.imageUrl" [alt]="perfume?.name || 'Perfume'" class="perfume-real-img" loading="lazy" />
+        } @else {
         <div class="image-placeholder-box">
           <svg class="placeholder-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
             <path d="M9 3h6v3H9zM7 6h10v15H7zM10 11h4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="placeholder-label">{{ perfume?.name || 'Fragrance Image' }}</span>
         </div>
+        }
       </div>
 
       <!-- Card Details -->

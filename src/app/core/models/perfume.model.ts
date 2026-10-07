@@ -1,4 +1,5 @@
 export interface Perfume {
+  imageUrl?: string;
   id: string;
   name: string;
   price: number;

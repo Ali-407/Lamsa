@@ -5,6 +5,9 @@
     <span class="product-badge">{{ product.badge }}</span>
     }
 
+    @if (product.imageUrl) {
+      <img [src]="product.imageUrl" [alt]="product.name" class="product-real-img" loading="lazy" />
+    } @else {
     <!-- Luxury Perfume Flacon Vector Art Placeholder -->
     <div class="flacon-scene" [class]="'variant-' + product.placeholderVariant">
       <div class="studio-ambient-light"></div>
@@ -206,6 +209,8 @@
 
       <div class="placeholder-tag">LUXURY EXTRACT CONTAINER</div>
     </div>
+    }
+    
   </div>
 
   <!-- Product Details Section -->

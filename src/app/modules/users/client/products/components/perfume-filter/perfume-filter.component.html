@@ -3,7 +3,7 @@
   <section class="filter-group">
     <h3 class="filter-title">CATEGORY</h3>
     <ul class="filter-list">
-      @for (category of categoryOptions; track category.id) {
+      @for (category of categoryOptions(); track category.id) {
       <li class="filter-item">
         <label class="filter-checkbox-label">
           <input type="checkbox" class="filter-checkbox-input" [checked]="isCategorySelected(category.id)"

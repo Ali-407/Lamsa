@@ -24,7 +24,7 @@ export class PerfumeCardComponent {
         id: this.perfume.id,
         name: this.perfume.name,
         price: this.perfume.price,
-        image: this.perfume.images || ''
+        image: this.perfume.imageUrl || this.perfume.images || ''
       });
 
       this.showNotification = true;
