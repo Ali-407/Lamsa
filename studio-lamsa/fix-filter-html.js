@@ -1,0 +1,91 @@
+const fs = require('fs');
+
+const targetFile = 'C:\\Users\\Ali\\Desktop\\LamsaProject\\Lamsa-FrontEnd\\src\\app\\modules\\users\\client\\products\\components\\perfume-filter\\perfume-filter.component.html';
+
+const content = `<aside class="filters-sidebar" aria-label="Product filters">
+  <!-- CATEGORY Filter Group -->
+  <section class="filter-group">
+    <h3 class="filter-title">CATEGORY</h3>
+    <ul class="filter-list">
+      @for (category of categoryOptions(); track category.id) {
+      <li class="filter-item">
+        <label class="filter-checkbox-label">
+          <input type="checkbox" class="filter-checkbox-input" [checked]="isCategorySelected(category.id)"
+            (change)="onToggleCategory(category.id)">
+          <span class="custom-checkbox"></span>
+          <span class="filter-text">{{ category.label }}</span>
+        </label>
+      </li>
+      }
+    </ul>
+  </section>
+
+  <!-- SCENT FAMILY Filter Group -->
+  <section class="filter-group">
+    <h3 class="filter-title">SCENT FAMILY</h3>
+    <ul class="filter-list">
+      @for (family of scentFamilyOptions; track family.id) {
+      <li class="filter-item">
+        <label class="filter-checkbox-label">
+          <input type="checkbox" class="filter-checkbox-input" [checked]="isScentFamilySelected(family.id)"
+            (change)="onToggleScentFamily(family.id)">
+          <span class="custom-checkbox"></span>
+          <span class="filter-text">{{ family.label }}</span>
+        </label>
+      </li>
+      }
+    </ul>
+  </section>
+
+  <!-- OCCASION Filter Group -->
+  <section class="filter-group">
+    <h3 class="filter-title">OCCASION</h3>
+    <ul class="filter-list">
+      @for (occasion of occasionOptions; track occasion.id) {
+      <li class="filter-item">
+        <label class="filter-checkbox-label">
+          <input type="checkbox" class="filter-checkbox-input" [checked]="isOccasionSelected(occasion.id)"
+            (change)="onToggleOccasion(occasion.id)">
+          <span class="custom-checkbox"></span>
+          <span class="filter-text">{{ occasion.label }}</span>
+        </label>
+      </li>
+      }
+    </ul>
+  </section>
+
+  <!-- PRICE RANGE Filter Group -->
+  <section class="filter-group price-filter-group">
+    <h3 class="filter-title">PRICE RANGE</h3>
+
+    <div class="price-slider-wrapper">
+      <div class="range-slider-track">
+        <div class="range-slider-progress" [style.left.%]="((currentMinPrice - 50) / 400) * 100"
+          [style.right.%]="100 - (((currentMaxPrice - 50) / 400) * 100)">
+        </div>
+      </div>
+
+      <input type="range" min="50" max="450" step="10" [value]="currentMinPrice" (input)="onMinPriceChange($event)"
+        class="range-input min-range" aria-label="Minimum price filter">
+
+      <input type="range" min="50" max="450" step="10" [value]="currentMaxPrice" (input)="onMaxPriceChange($event)"
+        class="range-input max-range" aria-label="Maximum price filter">
+    </div>
+
+    <div class="price-labels-row">
+      <span class="price-val">\${{ currentMinPrice }}</span>
+      <span class="price-val">\${{ currentMaxPrice }}</span>
+    </div>
+  </section>
+
+  <!-- Reset action for accessibility & utility -->
+  <div class="filter-actions">
+    <button type="button" class="btn-reset-filters" (click)="resetFilters()">
+      Reset All Filters
+    </button>
+  </div>
+</aside>
+`;
+
+fs.writeFileSync(targetFile, content, 'utf8');
+console.log('Successfully updated perfume-filter.component.html!');
